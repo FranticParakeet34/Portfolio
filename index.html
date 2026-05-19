@@ -296,6 +296,28 @@
             z-index: 3;
         }
 
+        /* ── VIMEO FULL-BLEED WRAPPER ── */
+        .vimeo-wrap {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            background: #000;
+        }
+        .vimeo-wrap iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* Cover trick for 16:9 iframes — mirrors object-fit: cover */
+            width: 100vw;
+            height: 56.25vw;
+            min-height: 100%;
+            min-width: 177.78vh;
+            transform: translate(-50%, -50%);
+            border: 0;
+            pointer-events: none;
+            filter: grayscale(12%) contrast(1.08);
+        }
+
         /* ── CONTACT SECTION ── */
         .contact-section {
             background: var(--bg);
@@ -457,7 +479,7 @@
                 <span class="meta-label">Aviation / Documentary</span>
                 <span class="meta-data">SONY A7SIII &nbsp;·&nbsp; SLOG3 &nbsp;·&nbsp; HIGH ALTITUDE</span>
             </div>
-            <span class="seq-counter">01 / 07</span>
+            <span class="seq-counter">01 / 08</span>
         </section>
 
         <!-- 02 — Tactical Triptych -->
@@ -479,7 +501,7 @@
                 <span class="meta-label">Tactical / Archival Record</span>
                 <span class="meta-data">A7SIII &nbsp;·&nbsp; SLOG3 &nbsp;·&nbsp; HIGH-CONTRAST OPS</span>
             </div>
-            <span class="seq-counter">02 / 07</span>
+            <span class="seq-counter">02 / 08</span>
         </section>
 
         <!-- 03 — Automotive Triptych -->
@@ -501,7 +523,7 @@
                 <span class="meta-label">Automotive / 2.39:1 Sequence</span>
                 <span class="meta-data">A7SIII &nbsp;·&nbsp; 50MM F1.2 &nbsp;·&nbsp; MECHANICAL HONESTY</span>
             </div>
-            <span class="seq-counter">03 / 07</span>
+            <span class="seq-counter">03 / 08</span>
         </section>
 
         <!-- 04 — Nature Triptych -->
@@ -523,7 +545,7 @@
                 <span class="meta-label">Nature / Environmental</span>
                 <span class="meta-data">A7SIII &nbsp;·&nbsp; WIDE GLASS &nbsp;·&nbsp; AVAILABLE LIGHT</span>
             </div>
-            <span class="seq-counter">04 / 07</span>
+            <span class="seq-counter">04 / 08</span>
         </section>
 
         <!-- 05 — Family Triptych -->
@@ -545,7 +567,7 @@
                 <span class="meta-label">Family / Portraiture</span>
                 <span class="meta-data">A7SIII &nbsp;·&nbsp; 85MM F1.4 &nbsp;·&nbsp; NATURAL LIGHT</span>
             </div>
-            <span class="seq-counter">05 / 07</span>
+            <span class="seq-counter">05 / 08</span>
         </section>
 
         <!-- 06 — Aviation Single -->
@@ -563,15 +585,19 @@
                 <span class="meta-label">Aviation / Frame Study</span>
                 <span class="meta-data">A7SIII &nbsp;·&nbsp; SLOG3 &nbsp;·&nbsp; MECHANICAL FORM</span>
             </div>
-            <span class="seq-counter">06 / 07</span>
+            <span class="seq-counter">06 / 08</span>
         </section>
 
         <!-- 07 — Automotive Highlight Reel -->
         <section class="snap-section">
             <div class="media-wrap">
-                <video autoplay muted loop playsinline preload="none">
-                    <source src="Public/automotive/AutomotiveHighlight.mp4" type="video/mp4">
-                </video>
+                <div class="vimeo-wrap">
+                    <iframe
+                        src="https://player.vimeo.com/video/1193440101?background=1"
+                        allow="autoplay; fullscreen"
+                        frameborder="0"
+                    ></iframe>
+                </div>
                 <div class="overlay-grain"></div>
                 <div class="hero-vignette"></div>
             </div>
@@ -579,7 +605,27 @@
                 <span class="meta-label">Automotive / Highlight Reel</span>
                 <span class="meta-data">SLOG3 COLOR &nbsp;·&nbsp; 4K 24P &nbsp;·&nbsp; LIVING RECORD</span>
             </div>
-            <span class="seq-counter">07 / 07</span>
+            <span class="seq-counter">07 / 08</span>
+        </section>
+
+        <!-- 08 — Tactical Highlight Reel -->
+        <section class="snap-section">
+            <div class="media-wrap">
+                <div class="vimeo-wrap">
+                    <iframe
+                        src="https://player.vimeo.com/video/1193441674?background=1"
+                        allow="autoplay; fullscreen"
+                        frameborder="0"
+                    ></iframe>
+                </div>
+                <div class="overlay-grain"></div>
+                <div class="hero-vignette"></div>
+            </div>
+            <div class="technical-meta">
+                <span class="meta-label">Tactical / Highlight Reel</span>
+                <span class="meta-data">SLOG3 COLOR &nbsp;·&nbsp; 4K 24P &nbsp;·&nbsp; LIVING RECORD</span>
+            </div>
+            <span class="seq-counter">08 / 08</span>
         </section>
 
         <!-- CONTACT -->
@@ -636,22 +682,6 @@
 
         sections.forEach(s => io.observe(s));
 
-        // ── Lazy-load videos as they scroll into view ─────────────────
-        const videoObs = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                const vid = entry.target;
-                if (entry.isIntersecting) {
-                    if (!vid.src && vid.querySelector('source')) {
-                        vid.load();
-                    }
-                    vid.play().catch(() => {});
-                } else {
-                    vid.pause();
-                }
-            });
-        }, { threshold: 0.3, root: scrollEl });
-
-        document.querySelectorAll('video').forEach(v => videoObs.observe(v));
     </script>
 
 </body>
