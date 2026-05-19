@@ -388,6 +388,9 @@
                 padding-bottom: max(36px, env(safe-area-inset-bottom));
             }
 
+            /* section 06 aviation — pull crop left to catch subject */
+            .mobile-reframe-left { object-position: 25% center; }
+
             /* triptych: show only the center (featured) panel */
             .triptych-section .media-wrap { display: block; }
             .triptych-section .media-wrap .tri-cell { width: 100%; height: 100%; }
@@ -577,6 +580,7 @@
                 <img
                     src="Public/aviation/_DSC6000-Edit-2.jpg"
                     alt="Aviation"
+                    class="mobile-reframe-left"
                     onerror="this.parentElement.style.background='#0c0c0c'"
                 >
                 <div class="overlay-grain"></div>
